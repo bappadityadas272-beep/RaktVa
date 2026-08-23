@@ -5,6 +5,7 @@ import { Toaster } from '@/components/ui/toaster';
 import { ErrorBoundary } from '@/components/error-boundary';
 import { useVoiceInput } from '@/hooks/use-voice';
 import { generateDoctorPDF } from '@/lib/pdf';
+import { addScan, getScans } from '@/lib/storage';
 import {
   Activity, ArrowLeft, ArrowUpRight, BarChart3, Bell, Camera, Check,
   ChevronDown, ClipboardCheck, FileText, Flame, HeartPulse, Leaf, LoaderCircle,
@@ -126,7 +127,20 @@ function Safety() {
 function DiagnosisPage() {
   const [uploaded, setUploaded] = useState(false);
   const [fileName, setFileName] = useState('');
-  const onFile = (event: ChangeEvent<HTMLInputElement>) => { const file = event.target.files?.[0]; if (file) { setUploaded(true); setFileName(file.name); } };
+  const [history, setHistory] = useState<any[]>([]);
+
+  useEffect(() => setHistory(getScans()), []);
+
+  const onFile = (event: ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      setUploaded(true);
+      setFileName(file.name);
+      // Demo: add to history
+      addScan({ hb: 6.2, timestamp: new Date().toISOString(), severity: 'Severe Anemia', color: '#EF4444' });
+      setHistory(getScans());
+    }
+  };
   const config = modules[0];
   return <ModuleShell config={config}><div className="grid gap-5 xl:grid-cols-[.9fr_1.1fr]"><div className="space-y-4"><label data-testid="dropzone-report" className="block cursor-pointer rounded-xl border border-dashed border-[#c0392b]/60 bg-[#24191c] p-8 text-center transition hover:bg-[#2c1d21]"><input data-testid="input-report-upload" type="file" accept=".jpg,.jpeg,.png,.pdf" onChange={onFile} className="sr-only" /><Upload className="mx-auto mb-3 text-[#ff8f86]" size={25} /><p className="text-sm font-bold text-slate-100">{uploaded ? 'Report ready for triage' : 'Drop a report photo here'}</p><p className="mt-1 text-xs text-slate-500">{fileName || 'JPG, PNG or PDF · up to 10 MB'}</p><span className="mt-5 inline-flex rounded-lg bg-[#c0392b] px-4 py-2 text-xs font-bold text-white">{uploaded ? 'Replace report' : 'Choose report'}</span></label><button data-testid="button-demo-report" onClick={() => { setUploaded(true); setFileName('sample-cbc-sita-devi.pdf'); }} className="flex w-full items-center justify-center gap-2 rounded-lg border border-white/10 py-2.5 text-xs font-bold text-slate-300 hover:bg-white/5"><LoaderCircle size={14} /> {uploaded ? 'Load a different demo' : 'Load sample demo report'}</button><div className="panel rounded-xl p-5"><div className="mb-4 flex items-center justify-between"><div><p className="text-[10px] font-bold uppercase tracking-[.16em] text-slate-500">Test patient</p><p className="mt-1 text-sm font-bold text-slate-100">Sita Devi, 28y <span className="font-normal text-slate-500">| Pregnant · 2nd trimester</span></p></div><Badge tone="red">Severe risk</Badge></div>{[['Hemoglobin (Hb)', '6.2 g/dL', '28%', 'Severe anemia'], ['MCV', '68 fL', '34%', 'Microcytic pattern'], ['Ferritin', '10 ng/mL', '42%', 'Depleted stores']].map(([name, value, width, status]) => <div key={name} className="mb-4 last:mb-0"><div className="mb-2 flex justify-between text-xs"><span className="font-bold text-slate-300">{name}</span><span className="font-mono text-slate-400">{value}</span></div><div className="h-2 rounded-full bg-[#2b3039]"><div className="h-2 rounded-full bg-[#c0392b]" style={{ width }} /></div><p className="mt-1 text-[10px] font-bold uppercase tracking-wider text-[#ff8f86]">{status}</p></div>)}</div></div><div className="panel rounded-xl p-5"><div className="mb-5 flex items-center justify-between"><div><p className="text-[10px] font-bold uppercase tracking-[.16em] text-slate-500">Clinical interpretation</p><h2 className="mt-1 font-display text-xl font-bold">What this means</h2></div><span className="rounded-full bg-[#51242a] px-3 py-1.5 text-xs font-bold text-[#ff8f86]">Iron deficiency · 89%</span></div><div className="space-y-3"><div className="rounded-lg border border-[#c0392b]/20 bg-[#24191c] p-4"><p className="text-sm font-bold text-[#ff9b92]">Severe low hemoglobin</p><p className="mt-2 text-xs leading-relaxed text-slate-400">Oxygen-carrying capacity is dangerously low. Escalate to a clinician today.</p></div><div className="rounded-lg border border-[#e67e22]/20 bg-[#2a2119] p-4"><p className="text-sm font-bold text-[#f7ad69]">Microcytic pattern</p><p className="mt-2 text-xs leading-relaxed text-slate-400">Small red blood cells point toward iron deficiency; confirm with clinical context.</p></div><div className="flex items-center gap-3 rounded-lg border border-[#2ecc71]/20 bg-[#18271f] p-4"><ShieldCheck className="text-[#73dfad]" size={20} /><p className="text-xs leading-relaxed text-slate-400"><b className="text-[#73dfad]">No hallucination fallback:</b> output is classified against WHO / ICMR standard tables.</p></div></div><Link data-testid="link-create-briefing" href="/briefing" className="mt-5 flex items-center justify-center gap-2 rounded-lg bg-[#c0392b] py-3 text-xs font-bold text-white hover:bg-[#d74a3b]">Create doctor briefing <ArrowUpRight size={14} /></Link></div></div><Safety /></ModuleShell>;
 }
