@@ -1,0 +1,22 @@
+{
+  "name": "raktva-ai",
+  "version": "1.0.0",
+  "description": "Anemia-AI triage co-pilot for Anemia Mukt Bharat",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test core/ruleEngine.test.js"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "express": "^4.19.2",
+    "@google/generative-ai": "^0.17.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.0"
+  }
+}

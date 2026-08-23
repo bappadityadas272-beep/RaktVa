@@ -1,0 +1,50 @@
+{
+  "severityBands": [
+    {
+      "level": "Normal",
+      "color": "#10B981",
+      "minHb": 12,
+      "maxHb": null,
+      "messages": [
+        "Your hemoglobin level is in the healthy range. Keep up your balanced diet.",
+        "Good news — your hemoglobin is normal. Continue your current nutrition habits.",
+        "Your iron levels look healthy. Maintain your regular diet with iron-rich foods."
+      ]
+    },
+    {
+      "level": "Mild Anemia",
+      "color": "#FCD34D",
+      "minHb": 10,
+      "maxHb": 11.9,
+      "messages": [
+        "Your hemoglobin is slightly low. Include more iron-rich foods like spinach, jaggery, and dates.",
+        "Mild anemia detected. Add green leafy vegetables and citrus fruits to your meals.",
+        "Your iron levels need attention. Try pairing iron-rich foods with vitamin C sources like lemon."
+      ]
+    },
+    {
+      "level": "Moderate Anemia",
+      "color": "#F59E0B",
+      "minHb": 8,
+      "maxHb": 9.9,
+      "messages": [
+        "Your hemoglobin level needs attention. Please consult a doctor and focus on iron-rich foods.",
+        "Moderate anemia found. Visit a healthcare provider soon and increase dietary iron intake.",
+        "Your iron levels are concerning. See a doctor within a week and add iron supplements if advised."
+      ]
+    },
+    {
+      "level": "Severe Anemia",
+      "color": "#EF4444",
+      "minHb": null,
+      "maxHb": 7.9,
+      "messages": [
+        "Your hemoglobin is very low. Please visit a doctor immediately for proper treatment.",
+        "Severe anemia detected. Urgent medical attention needed — visit a hospital or PHC today.",
+        "Critical iron deficiency. Do not delay — consult a healthcare provider right away."
+      ]
+    }
+  ],
+  "unit": "g/dL",
+  "reference": "WHO/ICMR adult thresholds"
+}
