@@ -154,11 +154,22 @@ function NutritionPage() {
   useEffect(() => {
     if (transcript) {
       setVoiceText(transcript);
-      setMessage(`Heard: "${transcript}"`);
-      // Check for food keywords
       const lower = transcript.toLowerCase();
-      if (lower.includes('chai') || lower.includes('tea')) setMessage('⚠️ Tea inhibits iron! Wait 90 min after meals.');
-      else if (lower.includes('nimbu') || lower.includes('lemon')) setMessage('✅ Vitamin C enhances iron absorption!');
+
+      // Check inhibitors
+      if (lower.includes('chai') || lower.includes('tea') || lower.includes('coffee')) {
+        setMessage('⚠️ Tea/coffee inhibits iron! Wait 90 min after meals.');
+      }
+      // Check enhancers
+      else if (lower.includes('nimbu') || lower.includes('lemon') || lower.includes('amla')) {
+        setMessage('✅ Vitamin C enhances iron absorption!');
+      }
+      else if (lower.includes('palak') || lower.includes('spinach')) {
+        setMessage('✅ Spinach is iron-rich. Add lemon for better absorption.');
+      }
+      else {
+        setMessage(`Heard: "${transcript}"`);
+      }
     }
   }, [transcript]);
 

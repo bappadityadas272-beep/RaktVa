@@ -1,0 +1,47 @@
+[
+  {
+    "id": "phc-gaya-1",
+    "name": "PHC Gaya Central",
+    "district": "Bihar",
+    "lat": 24.7965,
+    "lng": 84.9994,
+    "type": "PHC",
+    "distance": "2.4 km"
+  },
+  {
+    "id": "janaushadhi-1",
+    "name": "Janaushadhi Kendra",
+    "district": "Bihar",
+    "lat": 24.8012,
+    "lng": 85.0045,
+    "type": "Pharmacy",
+    "distance": "3.1 km"
+  },
+  {
+    "id": "esanjeevani-1",
+    "name": "eSanjeevani Telemedicine",
+    "district": "Bihar",
+    "lat": 24.7892,
+    "lng": 85.0123,
+    "type": "Telemedicine",
+    "distance": "4.8 km"
+  },
+  {
+    "id": "phc-barabanki",
+    "name": "CHC Barabanki",
+    "district": "UP",
+    "lat": 26.9225,
+    "lng": 81.1925,
+    "type": "CHC",
+    "distance": "8.2 km"
+  },
+  {
+    "id": "phc-dausa",
+    "name": "PHC Dausa North",
+    "district": "Rajasthan",
+    "lat": 26.8948,
+    "lng": 76.5618,
+    "type": "PHC",
+    "distance": "12.5 km"
+  }
+]
