@@ -1,0 +1,35 @@
+{
+  "inhibitors": [
+    {
+      "keywords": ["tea", "chai", "coffee", "kafi"],
+      "tip": "Tea or coffee right after meals can block iron absorption. Wait 60–90 minutes before having tea."
+    },
+    {
+      "keywords": ["milk", "doodh", "dairy", "paneer", "cheese"],
+      "tip": "Dairy calcium can interfere with iron absorption. Try spacing dairy and iron-rich meals by 2 hours."
+    },
+    {
+      "keywords": ["calcium tablet", "calcium supplement"],
+      "tip": "Calcium supplements reduce iron absorption. Take them at different times of day."
+    }
+  ],
+  "enhancers": [
+    {
+      "keywords": ["lemon", "nimbu", "lime", "citrus", "orange", "amla"],
+      "tip": "Great choice! Vitamin C from citrus helps your body absorb more iron from plant sources."
+    },
+    {
+      "keywords": ["tomato", "tamatar", "bell pepper", "capsicum"],
+      "tip": "Tomatoes and peppers are rich in vitamin C, which boosts iron absorption significantly."
+    },
+    {
+      "keywords": ["jaggery", "gur", "dates", "khajoor", "raisins", "kishmish"],
+      "tip": "Excellent iron-rich choice! Jaggery, dates, and raisins are traditional iron sources."
+    },
+    {
+      "keywords": ["spinach", "palak", "moringa", "drumstick leaves", "methi", "fenugreek"],
+      "tip": "Green leafy vegetables are iron-rich. Pair with lemon or tomato for better absorption."
+    }
+  ],
+  "defaultTip": "Pair iron-rich foods like spinach, jaggery, or dates with vitamin C sources like lemon or amla for better absorption."
+}
