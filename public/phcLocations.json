@@ -10,7 +10,7 @@
   },
   {
     "id": "janaushadhi-1",
-    "name": "Janaushadhi Kendra",
+    "name": "Janaushadhi Kendra Gaya",
     "district": "Bihar",
     "lat": 24.8012,
     "lng": 85.0045,
@@ -27,13 +27,31 @@
     "distance": "4.8 km"
   },
   {
-    "id": "phc-barabanki",
+    "id": "phc-patna",
+    "name": "PHC Patna Mahila",
+    "district": "Bihar",
+    "lat": 25.5941,
+    "lng": 85.1376,
+    "type": "PHC",
+    "distance": "6.5 km"
+  },
+  {
+    "id": "chc-barabanki",
     "name": "CHC Barabanki",
     "district": "UP",
     "lat": 26.9225,
     "lng": 81.1925,
     "type": "CHC",
     "distance": "8.2 km"
+  },
+  {
+    "id": "janaushadhi-2",
+    "name": "Janaushadhi Kendra Lucknow",
+    "district": "UP",
+    "lat": 26.8467,
+    "lng": 80.9462,
+    "type": "Pharmacy",
+    "distance": "9.7 km"
   },
   {
     "id": "phc-dausa",
@@ -43,5 +61,32 @@
     "lng": 76.5618,
     "type": "PHC",
     "distance": "12.5 km"
+  },
+  {
+    "id": "phc-jaipur",
+    "name": "PHC Jaipur Women & Child",
+    "district": "Rajasthan",
+    "lat": 26.9124,
+    "lng": 75.7873,
+    "type": "PHC",
+    "distance": "15.3 km"
+  },
+  {
+    "id": "chc-koraput",
+    "name": "CHC Koraput",
+    "district": "Odisha",
+    "lat": 18.8124,
+    "lng": 82.7145,
+    "type": "CHC",
+    "distance": "18.8 km"
+  },
+  {
+    "id": "esanjeevani-2",
+    "name": "eSanjeevani Hub Bhubaneswar",
+    "district": "Odisha",
+    "lat": 20.2961,
+    "lng": 85.8245,
+    "type": "Telemedicine",
+    "distance": "22.1 km"
   }
 ]
