@@ -3,11 +3,14 @@
     "target": "ES2022",
     "useDefineForClassFields": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "allowJs": false,
+    "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": false,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
     "moduleResolution": "Bundler",
@@ -17,7 +20,8 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": { "@/*": ["src/*"] },
-    "types": ["node"]
+    "types": ["node", "vite/client"]
   },
-  "include": ["src"]
+  "include": ["src", "core", "api"],
+  "exclude": ["node_modules", "dist"]
 }
