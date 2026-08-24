@@ -128,17 +128,58 @@ function DiagnosisPage() {
   const [uploaded, setUploaded] = useState(false);
   const [fileName, setFileName] = useState('');
   const [history, setHistory] = useState<any[]>([]);
+  const [scanning, setScanning] = useState(false);
+  const [result, setResult] = useState<any>(null);
 
   useEffect(() => setHistory(getScans()), []);
 
-  const onFile = (event: ChangeEvent<HTMLInputElement>) => {
+  const onFile = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-    if (file) {
-      setUploaded(true);
-      setFileName(file.name);
-      // Demo: add to history
-      addScan({ hb: 6.2, timestamp: new Date().toISOString(), severity: 'Severe Anemia', color: '#EF4444' });
-      setHistory(getScans());
+    if (!file) return;
+
+    setUploaded(true);
+    setFileName(file.name);
+    setScanning(true);
+
+    try {
+      // Convert to base64
+      const reader = new FileReader();
+      reader.onloadend = async () => {
+        const base64 = reader.result as string;
+
+        // Call API
+        const res = await fetch('/api/parse-report', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ imageBase64: base64 })
+        });
+
+        const data = await res.json();
+
+        if (data.success && data.data?.hb) {
+          // Get severity from rule engine
+          const { getSeverity } = await import('../core/ruleEngine');
+          const config = await import('../config/adultThresholds.json');
+          const severity = getSeverity(data.data.hb, config);
+
+          setResult({ ...data.data, severity });
+          addScan({
+            hb: data.data.hb,
+            timestamp: new Date().toISOString(),
+            severity: severity.level,
+            color: severity.color
+          });
+          setHistory(getScans());
+        } else {
+          // Fallback: manual entry needed
+          alert('Could not extract values. Please enter Hb manually.');
+        }
+        setScanning(false);
+      };
+      reader.readAsDataURL(file);
+    } catch (err) {
+      console.error('Scan error:', err);
+      setScanning(false);
     }
   };
   const config = modules[0];
@@ -154,22 +195,21 @@ function NutritionPage() {
   useEffect(() => {
     if (transcript) {
       setVoiceText(transcript);
-      const lower = transcript.toLowerCase();
 
-      // Check inhibitors
-      if (lower.includes('chai') || lower.includes('tea') || lower.includes('coffee')) {
-        setMessage('⚠️ Tea/coffee inhibits iron! Wait 90 min after meals.');
-      }
-      // Check enhancers
-      else if (lower.includes('nimbu') || lower.includes('lemon') || lower.includes('amla')) {
-        setMessage('✅ Vitamin C enhances iron absorption!');
-      }
-      else if (lower.includes('palak') || lower.includes('spinach')) {
-        setMessage('✅ Spinach is iron-rich. Add lemon for better absorption.');
-      }
-      else {
-        setMessage(`Heard: "${transcript}"`);
-      }
+      // Use food synergy matcher
+      import('../core/foodSynergy.js').then(({ getFoodTip }) => {
+        import('../config/foodSynergyTable.json').then((config) => {
+          const result = getFoodTip(transcript, config.default);
+
+          if (result.type === 'inhibitor') {
+            setMessage(`⚠️ ${result.tip}`);
+          } else if (result.type === 'enhancer') {
+            setMessage(`✅ ${result.tip}`);
+          } else {
+            setMessage(`Heard: "${transcript}"`);
+          }
+        });
+      });
     }
   }, [transcript]);
 
