@@ -1,0 +1,51 @@
+{
+  "severityBands": [
+    {
+      "level": "Normal",
+      "color": "#10B981",
+      "minHb": 11,
+      "maxHb": null,
+      "messages": [
+        "Your child's hemoglobin is in the healthy range for this age. Keep up the iron-rich meals.",
+        "Good news — hemoglobin looks normal for a child. Continue age-appropriate nutrition.",
+        "Iron levels look healthy. Keep offering iron-rich foods with vitamin C."
+      ]
+    },
+    {
+      "level": "Mild Anemia",
+      "color": "#FCD34D",
+      "minHb": 10,
+      "maxHb": 10.9,
+      "messages": [
+        "Hemoglobin is slightly low for a child. Add iron-rich foods like moringa, jaggery, and dal.",
+        "Mild anemia for this age band. Pair green leafy vegetables with lemon or tomato.",
+        "Iron needs a small boost. Try moringa powder in porridge and citrus with meals."
+      ]
+    },
+    {
+      "level": "Moderate Anemia",
+      "color": "#F59E0B",
+      "minHb": 7,
+      "maxHb": 9.9,
+      "messages": [
+        "Hemoglobin needs attention. Please take the child to a PHC and focus on iron-rich foods.",
+        "Moderate anemia for this age. Visit a healthcare provider soon and increase dietary iron.",
+        "Iron levels are concerning. See a doctor this week; do not start supplements unless advised."
+      ]
+    },
+    {
+      "level": "Severe Anemia",
+      "color": "#EF4444",
+      "minHb": null,
+      "maxHb": 6.9,
+      "messages": [
+        "Hemoglobin is very low. Please take the child to a doctor or PHC today.",
+        "Severe anemia detected. Urgent medical attention needed — visit a hospital or PHC today.",
+        "Critical iron deficiency. Do not delay — consult a healthcare provider right away."
+      ]
+    }
+  ],
+  "unit": "g/dL",
+  "reference": "WHO/ICMR children 6–59 months",
+  "ageGroup": "6-59 months"
+}

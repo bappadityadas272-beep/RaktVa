@@ -31,5 +31,35 @@
       "tip": "Green leafy vegetables are iron-rich. Pair with lemon or tomato for better absorption."
     }
   ],
-  "defaultTip": "Pair iron-rich foods like spinach, jaggery, or dates with vitamin C sources like lemon or amla for better absorption."
+  "defaultTip": "Pair iron-rich foods like spinach, jaggery, or dates with vitamin C sources like lemon or amla for better absorption.",
+  "byType": {
+    "iron_deficiency": {
+      "defaultTip": "Likely iron-deficiency pattern: pair dal, palak, or jaggery with lemon/amla, and keep tea 60–90 minutes after meals."
+    },
+    "b12_folate": {
+      "defaultTip": "Macrocytic pattern: include B12/folate foods such as eggs, curd (away from iron meals), and dark leafy greens — this does not change the severity badge."
+    },
+    "chronic_disease": {
+      "defaultTip": "Normocytic pattern: keep iron-rich meals with vitamin C, and take this sheet to a clinician — type hints never override WHO/ICMR severity."
+    },
+    "healthy": {
+      "defaultTip": "CBC pattern looks typical: keep pairing iron-rich foods with vitamin C to maintain levels."
+    }
+  },
+  "byAudience": {
+    "child": {
+      "enhancers": [
+        {
+          "keywords": ["moringa", "drumstick", "sahjan", "porridge", "daliya", "suji"],
+          "tip": "For children: a pinch of moringa powder in porridge or daliya is an easy iron boost. Add a squeeze of lemon if the child likes it."
+        }
+      ],
+      "defaultTip": "For children: stir a pinch of moringa powder into porridge or dal, and offer lemon, amla, or tomato with meals — not tea."
+    }
+  },
+  "regions": {
+    "bihar": {
+      "defaultTip": "In this region, sattu, lal saag, and gur with lemon or amla are practical iron-friendly swaps."
+    }
+  }
 }
